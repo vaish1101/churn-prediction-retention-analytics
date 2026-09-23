@@ -77,7 +77,7 @@
   <path d="M614 492V509" class="flow"/>
   <rect x="460" y="516" width="308" height="77" rx="8" class="node"/>
   <text x="478" y="543" class="title">Validation model selection</text>
-  <text x="478" y="565" class="micro">ROC / PR AUC · Top K</text>
+  <text x="478" y="565" class="micro">ROC AUC · Average Precision · Top K</text>
   <text x="478" y="584" class="micro">Brier · interpretability</text>
   <path d="M601 319V344H615V509" class="branch"/>
   <path d="M614 593V596" class="flow"/>
@@ -101,7 +101,7 @@
   <rect x="930" y="379" width="205" height="72" rx="5" fill="#f3f8fa"/>
   <rect x="1150" y="379" width="210" height="72" rx="5" fill="#f3f8fa"/>
   <text x="945" y="338" class="title-small">Discrimination</text>
-  <text x="945" y="359" class="micro">ROC AUC · PR AUC</text>
+  <text x="945" y="359" class="micro" style="font-size:14px">ROC AUC · Average Precision</text>
   <text x="1165" y="338" class="title-small">Probability quality</text>
   <text x="1165" y="359" class="micro">Brier · reliability</text>
   <text x="945" y="405" class="title-small">Uncertainty</text>
