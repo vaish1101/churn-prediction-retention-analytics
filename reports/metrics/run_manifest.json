@@ -1,0 +1,52 @@
+{
+  "model_version": "churn-0.1.0",
+  "raw_sha256": "88be4b93fbe0cc83421af1c503794c97c342eca914c1576db7c276e61d61358a",
+  "seed": 42,
+  "train_n": 4225,
+  "validation_n": 1409,
+  "test_n": 1409,
+  "selected_model": "Logistic Regression",
+  "calibration": "none",
+  "validation_threshold_for_80pct_recall": 0.25076144278523826,
+  "risk_cutoffs_from_validation": {
+    "high_cutoff": 0.6448521303738867,
+    "medium_cutoff": 0.3837629247909498
+  },
+  "priority_cutoff_from_validation": 54.7124257633256,
+  "test_metrics": {
+    "n": 1409,
+    "observed_churn_rate": 0.2654364797728886,
+    "accuracy": 0.7338537970191625,
+    "precision": 0.49917627677100496,
+    "recall": 0.8101604278074866,
+    "f1": 0.617737003058104,
+    "specificity": 0.706280193236715,
+    "roc_auc": 0.8420341522643313,
+    "pr_auc": 0.6337024099769349,
+    "brier_score": 0.13803510170138766,
+    "tn": 731,
+    "fp": 304,
+    "fn": 71,
+    "tp": 303,
+    "threshold": 0.25076144278523826
+  },
+  "bootstrap_95pct": {
+    "roc_auc": {
+      "lower": 0.8190747370790937,
+      "upper": 0.862553254627
+    },
+    "pr_auc": {
+      "lower": 0.5804215193927841,
+      "upper": 0.683388887980532
+    },
+    "recall": {
+      "lower": 0.7675053742427204,
+      "upper": 0.8473303242714811
+    },
+    "recall_at_10pct": {
+      "lower": 0.25182242769725377,
+      "upper": 0.3162455673758865
+    }
+  },
+  "scoring_scope": "Untouched test customers only; observed labels are for evaluation, not model features."
+}

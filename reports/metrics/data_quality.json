@@ -1,0 +1,50 @@
+{
+  "rows": 7043,
+  "columns_in_raw": 21,
+  "unique_customer_ids": 7043,
+  "source_churn_rate": 0.2653698707936959,
+  "missing_after_cleaning": 0,
+  "zero_tenure_total_charges_zero": 11,
+  "feature_summary": {
+    "tenure": {
+      "count": 7043.0,
+      "mean": 32.37114865824223,
+      "std": 24.55948102309446,
+      "min": 0.0,
+      "25%": 9.0,
+      "50%": 29.0,
+      "75%": 55.0,
+      "max": 72.0
+    },
+    "MonthlyCharges": {
+      "count": 7043.0,
+      "mean": 64.76169246059918,
+      "std": 30.090047097678493,
+      "min": 18.25,
+      "25%": 35.5,
+      "50%": 70.35,
+      "75%": 89.85,
+      "max": 118.75
+    },
+    "TotalCharges": {
+      "count": 7043.0,
+      "mean": 2279.7343035638223,
+      "std": 2266.7944696890213,
+      "min": 0.0,
+      "25%": 398.55,
+      "50%": 1394.55,
+      "75%": 3786.6,
+      "max": 8684.8
+    },
+    "contract_counts": {
+      "Month-to-month": 3875,
+      "Two year": 1695,
+      "One year": 1473
+    },
+    "internet_service_counts": {
+      "Fiber optic": 3096,
+      "DSL": 2421,
+      "No": 1526
+    }
+  }
+}

@@ -1,0 +1,11 @@
+model_version,segment,category,customer_count,observed_churn_rate,mean_predicted_risk,monthly_charge_exposure_proxy_total
+churn-0.1.0,Contract,Month-to-month,773,0.425614489003881,0.4302926724059618,51029.4
+churn-0.1.0,Contract,One year,300,0.12,0.11449147434620094,18987.95
+churn-0.1.0,Contract,Two year,336,0.026785714285714284,0.03094591485702308,20283.85
+churn-0.1.0,InternetService,DSL,484,0.20041322314049587,0.18852477449569693,28094.65
+churn-0.1.0,InternetService,Fiber optic,613,0.4110929853181077,0.43072933043868666,55673.05
+churn-0.1.0,InternetService,No,312,0.08012820512820513,0.0707642149063985,6533.5
+churn-0.1.0,PaymentMethod,Bank transfer (automatic),300,0.19,0.16058212201693414,19483.7
+churn-0.1.0,PaymentMethod,Credit card (automatic),309,0.1650485436893204,0.1648957143385117,20359.1
+churn-0.1.0,PaymentMethod,Electronic check,474,0.4345991561181435,0.4516666489926018,36009.6
+churn-0.1.0,PaymentMethod,Mailed check,326,0.18404907975460122,0.19676104756888022,14448.8

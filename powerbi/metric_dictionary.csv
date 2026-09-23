@@ -1,0 +1,15 @@
+metric,definition,formula_or_logic,denominator,unit,interpretation,limitation
+Observed churn rate,Share of labeled customers in the observed churn class,Observed churners / labeled customers,Labeled customers,proportion,Descriptive sample prevalence,Static fictional sample; no temporal forecast horizon
+Predicted churn probability,Model estimated probability of the observed churn class,predict_proba for class Yes,Not applicable,probability,Relative and calibrated risk estimate where verified,Not a causal or guaranteed future outcome
+High risk customer,Customer at or above the validation cohort's 90th percentile score,Predicted probability >= frozen validation 90th-percentile cutoff,Validation customer cohort,indicator,Capacity-derived risk band,Approximate 10% rate need not hold in later cohorts
+Precision,Share of flagged customers who are observed churners,TP / (TP + FP),Flagged customers,proportion,Quality of a threshold-based alert,Depends on chosen validation threshold and prevalence
+Recall,Share of observed churners captured by threshold,TP / (TP + FN),Observed churners,proportion,Coverage of churn cases,Depends on chosen validation threshold
+ROC AUC,Ranking discrimination across all classification thresholds,Area under ROC using probabilities,Positive-negative customer pairs,score,Higher means better pairwise ranking,Can appear strong under class imbalance
+PR AUC,Average precision over recall levels,Average precision using probabilities,Observed churners,score,Ranking quality focused on churn class,Prevalence-dependent
+Brier score,Mean squared probability error,Mean((predicted probability - observed label)^2),Labeled customers,squared probability,Lower means better overall probability accuracy,Mixes calibration and discrimination
+Lift@K,Top-K precision relative to sample prevalence,Precision@K / observed churn rate,Observed churn rate,ratio,Improvement over random targeting at capacity K,Does not estimate intervention effect
+Recall@K,Observed churners captured among top K / all observed churners,Captured churners / observed churners,Observed churners,proportion,Churn coverage within campaign capacity,Computed on held-out test cohort only
+Precision@K,Observed churners captured among top K / K,Captured churners / K,Customers targeted,proportion,Hit rate within campaign capacity,Computed on held-out test cohort only
+Cumulative gain,Same captured-churn share as Recall@K,Captured churners / observed churners,Observed churners,proportion,Share of churn cases reached by a growing campaign,Does not measure saves
+Value proxy,Observed monthly charge exposure,MonthlyCharges,Not applicable,currency units per month,Charge exposure for ranking only,Not CLV profit or revenue saved; currency unspecified in source
+Priority customer,Customer at or above the validation cohort's 90th percentile priority score,Probability * MonthlyCharges >= frozen validation 90th-percentile priority cutoff,Validation customer cohort,indicator,Combines risk and observed charge proxy without arbitrary weights,Not expected revenue saved or treatment uplift; later cohort share may differ
