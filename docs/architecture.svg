@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900" role="img" aria-labelledby="title desc">
+  <title id="title">Churn Prediction and Retention Analytics system architecture</title>
+  <desc id="desc">A left-to-right system map. IBM Telco sample data is validated and prepared, then split into training, validation, and untouched test cohorts. Logistic Regression and CatBoost are compared using validation data. Logistic Regression is selected, produces churn probabilities, and is evaluated on the untouched test cohort. Probabilities support campaign and priority decisions, structured analytical exports, and a planned two-page Power BI report. Tests, metric definitions, reproducibility, and provenance support the system.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#668096"/>
+    </marker>
+    <style>
+      .background{fill:#f5f7f8}.zone{fill:#fff;stroke:#d5dfe5;stroke-width:1.5}.zone-blue{fill:#f7fbff;stroke:#c8dce9;stroke-width:1.5}.zone-teal{fill:#f8fcfa;stroke:#c9e0d7;stroke-width:1.5}
+      .heading{font:700 37px Arial,sans-serif;fill:#152c42}.subtitle{font:400 18px Arial,sans-serif;fill:#566b7b}.zone-label{font:700 17px Arial,sans-serif;letter-spacing:1px;fill:#5c7282}.zone-number{font:700 14px Arial,sans-serif;fill:#fff}
+      .node{fill:#fff;stroke:#cad8e1;stroke-width:1.5}.node-blue{fill:#fff;stroke:#8db7d5;stroke-width:1.7}.node-teal{fill:#fff;stroke:#84bba9;stroke-width:1.7}.node-strong{fill:#e6f1fa;stroke:#5e9cc7;stroke-width:2}.node-decision{fill:#e7f5ef;stroke:#72ae98;stroke-width:2}
+      .title{font:700 20px Arial,sans-serif;fill:#1b3449}.title-small{font:700 17px Arial,sans-serif;fill:#1b3449}.body{font:400 17px Arial,sans-serif;fill:#526a7a}.micro{font:400 17px Arial,sans-serif;fill:#5e7380}.tag{font:700 14px Arial,sans-serif;letter-spacing:.6px;fill:#35688a}.tag-teal{font:700 14px Arial,sans-serif;letter-spacing:.6px;fill:#347862}.decision-heading{font:700 17px Arial,sans-serif;letter-spacing:.5px;fill:#276b55}
+      .flow{fill:none;stroke:#668096;stroke-width:2.2;marker-end:url(#arrow)}.branch{fill:none;stroke:#8aa1af;stroke-width:1.8}.test-flow{fill:none;stroke:#6e94b2;stroke-width:1.8;marker-end:url(#arrow)}.separator{stroke:#dce5e9;stroke-width:1.2}
+    </style>
+  </defs>
+
+  <rect width="1800" height="900" class="background"/>
+  <text x="50" y="61" class="heading">Churn Prediction &amp; Retention Analytics</text>
+  <text x="50" y="94" class="subtitle">From a static customer sample to validated churn risk and capacity-aware retention decisions</text>
+  <rect x="50" y="117" width="1700" height="4" rx="2" fill="#347eae"/>
+
+  <!-- Four architecture zones -->
+  <rect x="45" y="156" width="290" height="566" rx="14" class="zone"/>
+  <rect x="355" y="156" width="520" height="566" rx="14" class="zone-blue"/>
+  <rect x="895" y="156" width="500" height="566" rx="14" class="zone-teal"/>
+  <rect x="1415" y="156" width="340" height="566" rx="14" class="zone"/>
+
+  <circle cx="72" cy="192" r="15" fill="#58778d"/><text x="72" y="197" text-anchor="middle" class="zone-number">1</text>
+  <text x="100" y="198" class="zone-label">DATA FOUNDATION</text>
+  <circle cx="382" cy="192" r="15" fill="#347eae"/><text x="382" y="197" text-anchor="middle" class="zone-number">2</text>
+  <text x="410" y="198" class="zone-label">PREDICTIVE MODELING</text>
+  <circle cx="922" cy="192" r="15" fill="#408e76"/><text x="922" y="197" text-anchor="middle" class="zone-number">3</text>
+  <text x="950" y="198" class="zone-label">EVALUATION &amp; DECISION ANALYTICS</text>
+  <circle cx="1442" cy="192" r="15" fill="#58778d"/><text x="1442" y="197" text-anchor="middle" class="zone-number">4</text>
+  <text x="1470" y="198" class="zone-label">CONSUMPTION</text>
+
+  <!-- Data foundation -->
+  <rect x="65" y="248" width="250" height="98" rx="8" class="node-blue"/>
+  <rect x="65" y="248" width="6" height="98" rx="3" fill="#347eae"/>
+  <text x="84" y="278" class="tag">SOURCE DATA</text>
+  <text x="84" y="308" class="title">IBM Telco sample</text>
+  <text x="84" y="332" class="body">7,043 customers</text>
+  <path d="M190 346V383" class="flow"/>
+  <rect x="65" y="390" width="250" height="76" rx="8" class="node"/>
+  <text x="84" y="421" class="title">Data Validation</text>
+  <text x="84" y="448" class="micro">Schema · charges</text>
+  <path d="M190 466V501" class="flow"/>
+  <rect x="65" y="508" width="250" height="76" rx="8" class="node"/>
+  <text x="84" y="539" class="title">Feature Preparation</text>
+  <text x="84" y="566" class="micro">ID excluded from features</text>
+  <text x="65" y="665" class="micro">Fictional sample · static</text>
+  <path d="M315 546H345V286H375" class="flow"/>
+
+  <!-- Model development: development and untouched test remain separate -->
+  <rect x="375" y="238" width="480" height="97" rx="8" class="node"/>
+  <text x="395" y="267" class="title">Stratified development design</text>
+  <rect x="393" y="283" width="128" height="36" rx="5" fill="#e6f1fa"/>
+  <rect x="533" y="283" width="137" height="36" rx="5" fill="#e6f1fa"/>
+  <rect x="682" y="283" width="155" height="36" rx="5" fill="#edf2f5"/>
+  <text x="457" y="306" text-anchor="middle" class="title-small">Training + CV</text>
+  <text x="601" y="306" text-anchor="middle" class="title-small">Validation</text>
+  <text x="759" y="306" text-anchor="middle" class="title-small">Untouched test</text>
+
+  <path d="M457 319V356H500" class="branch"/>
+  <path d="M457 356H727" class="branch"/>
+  <path d="M500 356V371" class="test-flow"/>
+  <path d="M727 356V371" class="test-flow"/>
+  <text x="395" y="363" class="tag">MODEL CANDIDATES</text>
+  <rect x="385" y="378" width="218" height="88" rx="8" class="node-blue"/>
+  <rect x="625" y="378" width="218" height="88" rx="8" class="node-blue"/>
+  <text x="402" y="411" class="title-small">Logistic Regression</text>
+  <text x="402" y="439" class="body">Interpretable baseline</text>
+  <text x="642" y="411" class="title">CatBoost</text>
+  <text x="642" y="439" class="body">Nonlinear challenger</text>
+  <path d="M494 466V492H614" class="branch"/>
+  <path d="M734 466V492H614" class="branch"/>
+  <path d="M614 492V509" class="flow"/>
+  <rect x="460" y="516" width="308" height="77" rx="8" class="node"/>
+  <text x="478" y="543" class="title">Validation model selection</text>
+  <text x="478" y="565" class="micro">ROC / PR AUC · Top K</text>
+  <text x="478" y="584" class="micro">Brier · interpretability</text>
+  <path d="M601 319V344H615V509" class="branch"/>
+  <path d="M614 593V596" class="flow"/>
+  <rect x="460" y="602" width="308" height="45" rx="8" class="node-strong"/>
+  <text x="478" y="620" class="tag">SELECTED MODEL</text>
+  <text x="478" y="642" class="title">Logistic Regression</text>
+  <path d="M724 647V663" class="flow"/>
+  <rect x="460" y="670" width="308" height="37" rx="8" class="node-blue"/>
+  <text x="478" y="696" class="title">Churn Probability</text>
+
+  <!-- Untouched test goes to evaluation, never to model selection -->
+  <path d="M759 319V340H884V303H914" class="test-flow"/>
+
+  <!-- Model evaluation -->
+  <text x="915" y="236" class="tag-teal">MODEL EVALUATION</text>
+  <rect x="915" y="252" width="460" height="211" rx="9" class="node-teal"/>
+  <text x="936" y="283" class="title">Untouched test evaluation</text>
+  <line x1="936" y1="297" x2="1354" y2="297" class="separator"/>
+  <rect x="930" y="311" width="205" height="62" rx="5" fill="#f3f8fa"/>
+  <rect x="1150" y="311" width="210" height="62" rx="5" fill="#f3f8fa"/>
+  <rect x="930" y="379" width="205" height="72" rx="5" fill="#f3f8fa"/>
+  <rect x="1150" y="379" width="210" height="72" rx="5" fill="#f3f8fa"/>
+  <text x="945" y="338" class="title-small">Discrimination</text>
+  <text x="945" y="359" class="micro">ROC AUC · PR AUC</text>
+  <text x="1165" y="338" class="title-small">Probability quality</text>
+  <text x="1165" y="359" class="micro">Brier · reliability</text>
+  <text x="945" y="405" class="title-small">Uncertainty</text>
+  <text x="945" y="429" class="micro">Bootstrap intervals</text>
+  <text x="1165" y="405" class="title-small">Explainability</text>
+  <text x="1165" y="427" class="micro">Global · segment</text>
+  <text x="1165" y="445" class="micro">Customer level</text>
+
+  <!-- Decision analytics -->
+  <rect x="915" y="477" width="460" height="25" rx="5" fill="#dcefe7"/>
+  <text x="930" y="495" class="decision-heading">RETENTION DECISION ANALYTICS</text>
+  <rect x="915" y="505" width="460" height="197" rx="9" class="node-teal"/>
+  <rect x="930" y="519" width="430" height="29" rx="5" fill="#dff0e9"/>
+  <text x="1145" y="539" text-anchor="middle" class="tag-teal">PREDICTED CHURN PROBABILITY</text>
+  <path d="M1034 548V556" class="test-flow"/>
+  <path d="M1256 548V556" class="test-flow"/>
+  <rect x="930" y="563" width="207" height="76" rx="6" class="node-decision"/>
+  <rect x="1153" y="563" width="207" height="76" rx="6" class="node-decision"/>
+  <text x="946" y="585" class="title-small">Campaign analytics</text>
+  <text x="946" y="608" class="micro">Lift · gains · Top K</text>
+  <text x="946" y="626" class="micro">5 / 10 / 20 / 30%</text>
+  <text x="1169" y="585" class="title-small">Customer priority</text>
+  <text x="1169" y="612" class="micro">Risk × charge exposure</text>
+  <path d="M1034 639V647" class="branch"/>
+  <path d="M1256 639V647" class="branch"/>
+  <rect x="930" y="653" width="430" height="37" rx="5" fill="#f1f8f5"/>
+  <text x="1145" y="677" text-anchor="middle" class="title-small">Suggested retention actions</text>
+  <path d="M768 688H885V534H923" class="flow"/>
+
+  <!-- Structured outputs and report consumption -->
+  <text x="1425" y="236" class="tag">STRUCTURED ANALYTICAL OUTPUTS</text>
+  <rect x="1425" y="252" width="320" height="281" rx="9" class="node-blue"/>
+  <text x="1444" y="284" class="title">Versioned exports</text>
+  <line x1="1444" y1="299" x2="1726" y2="299" class="separator"/>
+  <text x="1444" y="333" class="body">Scored customers</text>
+  <text x="1444" y="372" class="body">Model metrics</text>
+  <text x="1444" y="411" class="body">Campaign capacity</text>
+  <text x="1444" y="450" class="body">Calibration bins</text>
+  <text x="1444" y="489" class="body">Segment summaries</text>
+  <path d="M1375 605H1404V493H1418" class="flow"/>
+  <path d="M1585 533V570" class="flow"/>
+  <rect x="1425" y="577" width="320" height="119" rx="9" class="node-strong"/>
+  <text x="1444" y="612" class="title">Power BI</text>
+  <text x="1444" y="640" class="body">Two-page retention dashboard</text>
+  <text x="1444" y="666" class="micro">Overview · model &amp; campaign</text>
+
+  <!-- Supporting practices, not a deployment platform -->
+  <rect x="45" y="762" width="1710" height="94" rx="12" fill="#eaf0f3" stroke="#d0dce2" stroke-width="1.3"/>
+  <text x="66" y="789" class="zone-label">CROSS-CUTTING ANALYTICAL DISCIPLINE</text>
+  <line x1="66" y1="804" x2="1734" y2="804" class="separator"/>
+  <text x="171" y="834" text-anchor="middle" class="title-small">Automated tests</text>
+  <text x="607" y="834" text-anchor="middle" class="title-small">Metric definitions</text>
+  <text x="1057" y="834" text-anchor="middle" class="title-small">Reproducibility</text>
+  <text x="1517" y="834" text-anchor="middle" class="title-small">Data provenance</text>
+  <line x1="385" y1="812" x2="385" y2="843" class="separator"/>
+  <line x1="835" y1="812" x2="835" y2="843" class="separator"/>
+  <line x1="1285" y1="812" x2="1285" y2="843" class="separator"/>
+</svg>
