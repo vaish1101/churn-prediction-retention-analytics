@@ -174,7 +174,7 @@ def optional_cost_scenario(scored, *, contact_cost=None, intervention_cost=None,
     gross_proxy = float((targeted.churn_probability * targeted.monthly_charge_exposure_proxy).sum()
                         * assumed_save_rate * value_horizon_months)
     expense = float(k * (contact_cost + intervention_cost))
-    return {"label": "SCENARIO ASSUMPTIONS — not observed company economics",
+    return {"label": "SCENARIO ASSUMPTIONS: not observed company economics",
             "capacity_pct": capacity_pct, "contacted_customers": k,
             "contact_cost_assumption": contact_cost, "intervention_cost_assumption": intervention_cost,
             "assumed_save_rate": assumed_save_rate, "value_horizon_months": value_horizon_months,
