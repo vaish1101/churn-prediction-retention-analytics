@@ -10,6 +10,10 @@ Predictive modeling and retention analytics system that identifies customers at 
 
 Which customers are most likely to churn, why are they at risk, and who should be prioritized when retention capacity is limited?
 
+This decision problem appears across telecom, banking, insurance, utilities, SaaS, automotive services, and B2B businesses wherever companies need to identify attrition risk and prioritize limited retention capacity.
+
+This project uses telecom as the demonstration domain. The trained model itself is not assumed to transfer across sectors; the reusable part is the analytical workflow for risk estimation, prioritization, capacity planning, and explanation.
+
 A churn probability alone is not enough. The workflow identifies high risk customers, examines signals associated with their scores, ranks customers by risk and charge exposure, and shows how campaign capacity changes the target group.
 
 ## Key Results
@@ -42,8 +46,6 @@ At the 10% campaign scenario, 141 customers capture 28.1% of observed churners w
 - Froze the selected model, threshold, calibration decision, and prioritization cutoffs before final test evaluation.
 - Evaluated ranking, probability quality, campaign capacity, customer segments, and uncertainty.
 - Converted model outputs into retention priorities, aggregate reporting exports, and a two page Power BI dashboard.
-
-The demonstration domain is telecom, but the same analytical pattern applies to subscription, renewal, and relationship businesses such as banking, insurance, utilities, SaaS, automotive services, and B2B accounts. The trained model itself is not assumed to transfer across sectors. The reusable part is the workflow for risk estimation, prioritization, capacity planning, and explanation.
 
 ## System Architecture
 
